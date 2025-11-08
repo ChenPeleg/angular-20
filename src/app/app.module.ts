@@ -1,10 +1,23 @@
 import { NgModule } from "@angular/core";
-import { App } from "./app";
+import { App } from "./app.component";
+import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { provideRouter } from '@angular/router';
 
-
+import { routes } from './app.routes';
+import { BrowserModule } from "@angular/platform-browser";
 
 @NgModule({
-  declarations: [App]
+  declarations: [App],
+  imports: [BrowserModule],
+
+  providers: [
+
+    provideBrowserGlobalErrorListeners(),
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes)
+  ],
+  bootstrap: [App]
 
 })
 export class AppModule { }
+
